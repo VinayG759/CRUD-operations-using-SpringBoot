@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Students List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="header">
+    Online Student Management & Placement Portal
+</div>
+
+<div class="container">
+
+    <a th:href="@{/students/new}" class="btn btn-add">+ Add Student</a>
+
+    <form th:action="@{/students/search}" method="get" style="margin-top:15px;">
+        <input type="text" name="keyword" placeholder="Search by name or department">
+        <button type="submit" class="btn btn-search">Search</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.department}"></td>
+            <td>
+                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-edit">Edit</a>
+                <a th:href="@{/students/delete/{id}(id=${student.id})}"
+                   class="btn btn-delete"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

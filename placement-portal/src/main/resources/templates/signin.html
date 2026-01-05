@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign In</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="header">
+    Online Student Management & Placement Portal
+</div>
+
+<div class="login-container">
+
+    <h2>Sign In</h2>
+
+    <!-- Error message -->
+    <div th:if="${param.error}" class="error-msg">
+        Invalid username or password
+    </div>
+
+    <!-- Logout success -->
+    <div th:if="${param.logout}" class="success-msg">
+        You have been logged out successfully
+    </div>
+
+    <form th:action="@{/login}" method="post">
+
+        <label>Username</label>
+        <input type="text" name="username" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <div class="login-footer">
+        © 2025 Placement Portal
+    </div>
+
+</div>
+
+</body>
+</html>
+
